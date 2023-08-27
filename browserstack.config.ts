@@ -7,7 +7,7 @@ const clientPlaywrightVersion = cp
   .split(' ')[1];
 const BrowserStackLocal = require('browserstack-local');
 const util = require('util');
-
+console.log('bs username', process.env.BROWSERSTACK_USERNAME);
 // BrowserStack Specific Capabilities.
 // Set 'browserstack.local:true For Local testing
 const caps = {
@@ -16,9 +16,9 @@ const caps = {
   os_version: 'catalina',
   name: 'My first playwright test',
   build: 'playwright-build',
-  'browserstack.username': process.env.BROWSERSTACK_USERNAME || 'USERNAME',
-  'browserstack.accessKey': process.env.BROWSERSTACK_ACCESS_KEY || 'ACCESSKEY',
-  'browserstack.local': process.env.BROWSERSTACK_LOCAL || true, 
+  'browserstack.username': process.env.BROWSERSTACK_USERNAME || 'thadeusodenyo_Hq3EB6',
+  'browserstack.accessKey': process.env.BROWSERSTACK_ACCESS_KEY || 'quipLyBy7x5cV3owaxKa',
+  'browserstack.local': process.env.BROWSERSTACK_LOCAL || true,
   'client.playwrightVersion': clientPlaywrightVersion,
 };
 
@@ -26,7 +26,7 @@ exports.bsLocal = new BrowserStackLocal.Local();
 
 // replace YOUR_ACCESS_KEY with your key. You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
 exports.BS_LOCAL_ARGS = {
-  key: process.env.BROWSERSTACK_ACCESS_KEY || 'ACCESSKEY',
+  key: process.env.BROWSERSTACK_ACCESS_KEY || 'quipLyBy7x5cV3owaxKa',
 };
 
 // Patching the capabilities dynamically according to the project name.
@@ -45,8 +45,8 @@ const patchCaps = (name, title) => {
 };
 
 exports.getCdpEndpoint = (name, title) => {
-    patchCaps(name, title)    
-    const cdpUrl = `wss://cdp.browserstack.com/playwright?caps=${encodeURIComponent(JSON.stringify(caps))}`
-    console.log(`--> ${cdpUrl}`)
-    return cdpUrl;
+  patchCaps(name, title)
+  const cdpUrl = `wss://cdp.browserstack.com/playwright?caps=${encodeURIComponent(JSON.stringify(caps))}`
+  console.log(`--> ${cdpUrl}`)
+  return cdpUrl;
 }

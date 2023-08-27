@@ -1,7 +1,7 @@
 // @ts-check
 const { devices } = require('@playwright/test');
 const { getCdpEndpoint } = require('./browserstack.config.ts')
-
+console.log('yes')
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -15,8 +15,8 @@ const { getCdpEndpoint } = require('./browserstack.config.ts')
  */
 const config = {
   testDir: './tests',
-  testMatch: '**/*.ts', 
-  
+  testMatch: '**/*.ts',
+
   globalSetup: require.resolve('./global-setup.ts'),
   globalTeardown: require.resolve('./global-teardown.ts'),
 
@@ -48,6 +48,7 @@ const config = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    headless: true
   },
 
   /* Configure projects for major browsers */
@@ -55,7 +56,7 @@ const config = {
     {
       name: 'chrome@latest:Windows 11',
       use: {
-        connectOptions: { wsEndpoint: getCdpEndpoint('chrome@latest:Windows 11','test1') },
+        connectOptions: { wsEndpoint: getCdpEndpoint('chrome@latest:Windows 11', 'test1') },
       },
     }
     ,

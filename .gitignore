@@ -1,2 +1,5 @@
 node_modules
 playwright-report
+.env
+browserstack.err
+local.log
